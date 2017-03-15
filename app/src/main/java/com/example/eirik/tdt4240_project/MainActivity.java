@@ -1,5 +1,7 @@
 package com.example.eirik.tdt4240_project;
 
+//hei
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
