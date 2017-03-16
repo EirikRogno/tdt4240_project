@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">tdt4240_project</string>
+    <string name="title_activity_log_in">LogInActivity</string>
 </resources>

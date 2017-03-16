@@ -15,6 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="MainMenu.MainMenuActivity" />
+        <activity android:name="com.tdt4240.drawing.Main2Activity" />
+        <activity android:name=".drawing.DrawingActivity" />
+        <activity android:name=".mainMenu.MainMenuActivity" />
+        <activity
+            android:name=".logIn.LogInActivity"
+            android:label="@string/title_activity_log_in"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".guessing.GuessingActivity" />
     </application>
 
 </manifest>
