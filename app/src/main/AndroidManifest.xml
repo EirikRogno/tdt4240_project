@@ -15,9 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="MainMenu.MainMenuActivity" />
-        <activity android:name="com.tdt4240.drawing.Main2Activity" />
-        <activity android:name=".drawing.DrawingActivity" />
+        <activity android:name="mainMenu.MainMenuActivity" />
+        <activity android:name=".drawing.DrawingActivity" android:exported="true"/>
         <activity android:name=".mainMenu.MainMenuActivity" />
         <activity
             android:name=".logIn.LogInActivity"
