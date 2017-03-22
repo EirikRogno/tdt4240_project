@@ -9,4 +9,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.eirik.tdt4240_project.logIn.LogInActivity">
 
+    <EditText
+        android:id="@+id/textUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Username"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:layout_below="@+id/textUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp" />
 </RelativeLayout>
