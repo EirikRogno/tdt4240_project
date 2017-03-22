@@ -7,6 +7,13 @@ import com.example.eirik.tdt4240_project.R;
 
 public class LogInActivity extends AppCompatActivity {
 
+    //login button
+    //username
+
+    public Boolean onActionLoginButton(){
+        return null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
