@@ -9,19 +9,21 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.eirik.tdt4240_project.models.Drawing;
+
 public class DrawingController extends View {
 
     private Paint paint;
     private Path path;
-    private float x;
-    private float y;
+    private Drawing drawing;
 
     public DrawingController(Context context, AttributeSet as){
         super(context, as);
+        drawing = new Drawing();
         paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        path = new Path(); // follows the path of drawing
+        path = new Path();
     }
 
     @Override
@@ -31,18 +33,7 @@ public class DrawingController extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // touch coordinates
-        x = event.getX();
-        y = event.getY();
-
-        // update path
-        if (event.getAction() == 0) { // ACTION_DOWN
-            path.moveTo(x,y);
-        } else if (event.getAction() == 2) {// ACTION_MOVE
-            path.lineTo(x,y);
-        } else if (event.getAction() == 1) {// ACTION_UP
-            path.lineTo(x,y);
-        }
+        path = drawing.addStroke(event);
 
         //force view to draw
         invalidate();
