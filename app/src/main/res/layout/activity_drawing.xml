@@ -12,15 +12,15 @@
     tools:context="com.example.eirik.tdt4240_project.drawing.DrawingActivity">
 
     <TextView
-        android:text="Tegn en"
-        android:layout_width="wrap_content"
+        android:text="TEGN EN"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/intro"
-        android:fontFamily="sans-serif"
-        android:textSize="36sp" />
+        android:textSize="20sp"
+        android:textAlignment="center" />
 
     <com.example.eirik.tdt4240_project.drawing.DrawingController
         android:id="@+id/draw"
@@ -29,5 +29,18 @@
         android:background="@android:color/white"
         android:layout_below="@+id/intro"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom = "70dp"/>
+
+    <TextView
+        android:text="---"
+        android:id="@+id/word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_below="@+id/intro" />
 </RelativeLayout>
