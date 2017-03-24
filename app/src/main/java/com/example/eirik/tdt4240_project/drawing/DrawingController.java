@@ -11,11 +11,14 @@ import android.view.View;
 
 import com.example.eirik.tdt4240_project.models.Drawing;
 
+import java.util.Map;
+
 public class DrawingController extends View {
 
     private Paint paint;
-    private Path path;
+    private Path currentPath;
     private Drawing drawing;
+    private Map<Path, Paint> strokes;
 
     public DrawingController(Context context, AttributeSet as){
         super(context, as);
@@ -23,17 +26,24 @@ public class DrawingController extends View {
         paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        path = new Path();
+        currentPath = new Path();
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawPath(path,paint);
+        // draw current stroke
+        canvas.drawPath(currentPath,paint);
+
+        // draw finished strokes
+        strokes = drawing.getDrawing();
+        for (Path p : strokes.keySet()) {
+            canvas.drawPath(p, strokes.get(p));
+        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        path = drawing.addStroke(event);
+        currentPath = drawing.addStroke(event, paint);
 
         //force view to draw
         invalidate();
