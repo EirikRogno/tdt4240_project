@@ -1,8 +1,6 @@
 package com.example.eirik.tdt4240_project.drawing;
 
 import android.app.Activity;
-import android.graphics.Canvas;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +13,9 @@ public class DrawingActivity extends Activity {
     private DrawingController drawingController;
     private TextView wordField;
     private Button sendButton;
+    private Button colorButton;
+    private ColorPopup colors;
+    private TextView currentColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,25 @@ public class DrawingActivity extends Activity {
             }
         });
 
+        this.colorButton = (Button)findViewById(R.id.colorButton);
+        colorButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openColorPopup();
+            }
+        });
+
+        this.currentColor = (TextView)findViewById(R.id.currentColor);
+
         startDrawingActivity();
+    }
+
+    private void openColorPopup() {
+        colors = new ColorPopup(this);
+        colors.showDialog(this);
+    }
+
+    public void changeColor(int color) { // user wants to change color from colorPopup-window, notify controller
+        drawingController.changeColor(color, currentColor);
     }
 
     private void startDrawingActivity() {
@@ -41,4 +60,5 @@ public class DrawingActivity extends Activity {
     private void stopDrawingActivity() {
         // send drawing to server
     }
+
 }
