@@ -16,20 +16,16 @@ import java.util.Map;
 
 public class DrawingController extends View {
 
-    private Paint paint;
     private Path currentPath;
     private Drawing drawing;
     private Map<Path, Paint> strokes;
-    int currentColor;
-    int currentWidth;
+    private DrawingTool currentTool;
 
     public DrawingController(Context context, AttributeSet as){
         super(context, as);
         drawing = new Drawing();
-        currentColor = Color.BLACK;
-        currentWidth = 5;
-        paint = makeNewPaint();
         currentPath = new Path();
+        currentTool = new Pen(Color.BLACK, 5);
     }
 
     @Override
@@ -42,12 +38,12 @@ public class DrawingController extends View {
         }
 
         // draw current stroke
-        canvas.drawPath(currentPath,paint);
+        canvas.drawPath(currentPath,currentTool.getTool());
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        currentPath = drawing.addStroke(event, paint);
+        currentPath = drawing.addStroke(event, currentTool.getTool());
 
         //force view to draw
         invalidate();
@@ -55,22 +51,12 @@ public class DrawingController extends View {
         return true;
     }
 
-    public void changeColor(int color, TextView currentColor) {
-        this.currentColor = color;
-        currentColor.setBackgroundColor(color);
-        paint = makeNewPaint();
+    public void changeColor(int color, TextView currentColorView) { // makes new tool
+        currentColorView.setBackgroundColor(color); // in GUI
+        currentTool = currentTool.changeColor(color);
     }
 
     public void changeStrokeWidth(int width) {
-        currentWidth = width;
-        paint = makeNewPaint();
-    }
-
-    private Paint makeNewPaint() {
-        Paint paint = new Paint();
-        paint.setColor(currentColor);
-        paint.setStrokeWidth(currentWidth);
-        paint.setStyle(Paint.Style.STROKE);
-        return paint;
+        currentTool = currentTool.changeSize(width);
     }
 }
