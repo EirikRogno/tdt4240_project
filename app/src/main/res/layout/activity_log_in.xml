@@ -10,7 +10,7 @@
     tools:context="com.example.eirik.tdt4240_project.logIn.LogInActivity">
 
     <EditText
-        android:id="@+id/textUsername"
+        android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
@@ -21,11 +21,36 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/logInButton"
+        android:id="@+id/btnLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log in"
-        android:layout_below="@+id/textUsername"
+        android:layout_below="@+id/txtUsername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp" />
+
+    <Button
+        android:id="@+id/btnNewAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogIn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="New account" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Drawly"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColorLink="@android:color/holo_orange_dark"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        tools:textColor="@android:color/holo_orange_dark" />
+
 </RelativeLayout>

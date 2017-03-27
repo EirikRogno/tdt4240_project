@@ -9,4 +9,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".mainMenu.MainMenuActivity">
 
+    <Button
+        android:id="@+id/btnNewGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="113dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="33dp"
+        android:text="New game" />
+
+    <TextView
+        android:id="@+id/txtActiveGames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Active games: "
+        android:layout_below="@+id/btnNewGame"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ExpandableListView
+        android:id="@+id/txtList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtActiveGames"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
+
 </RelativeLayout>
