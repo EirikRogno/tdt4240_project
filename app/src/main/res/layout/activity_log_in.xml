@@ -16,7 +16,7 @@
         android:layout_marginTop="150dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Username"
+        android:hint="Username"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -27,7 +27,8 @@
         android:text="Log in"
         android:layout_below="@+id/txtUsername"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="33dp"
+        android:onClick="logIn"/>
 
     <Button
         android:id="@+id/btnNewAcc"
@@ -36,7 +37,8 @@
         android:layout_below="@+id/btnLogIn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
-        android:text="New account" />
+        android:text="New account"
+        android:onClick="newAccount"/>
 
     <TextView
         android:id="@+id/txtTitle"

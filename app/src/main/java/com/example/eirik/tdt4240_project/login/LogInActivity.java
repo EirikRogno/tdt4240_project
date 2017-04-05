@@ -1,6 +1,8 @@
 package com.example.eirik.tdt4240_project.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,28 +16,33 @@ import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
 
 public class LogInActivity extends AppCompatActivity {
 
-    /*
-    public void inputButtonOnClick(View v){
-        if(v.getId() == R.id.logInButton){
-            Intent i = new Intent(LogInActivity.this, MainMenuActivity.class);
-            startActivity(i);
-        }
-    }
-    */
-
-    Button logInButton;
-    Button newAccountButton;
     EditText usernameInput;
+    LogInController controller = new LogInController();
+
+    public void goToMainMenu(){
+        startActivity(new Intent(LogInActivity.this, MainMenuActivity.class));
+    }
+
+    public void displayUserNotFound(){
+        AlertDialog alertDialog = new AlertDialog.Builder(LogInActivity.this).create();
+        alertDialog.setTitle("Error");
+        alertDialog.setMessage("User does not exist");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
 
 
-    public void inputButtonOnClick(View v){
-        if(v.getId() == R.id.btnLogIn){
-            logInButton.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v){
-                    startActivity(new Intent(LogInActivity.this, MainMenuActivity.class));
-                }
-            });
-        }
+    public void logIn(View v){
+        controller.getUser(usernameInput.getText().toString(), this);
+    }
+
+    public void newAccount(View v){
+        controller.createUser(usernameInput.getText().toString());
     }
 
     @Override
@@ -43,16 +50,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        logInButton = (Button)findViewById(R.id.btnLogIn);
-        newAccountButton = (Button)findViewById(R.id.btnNewAcc);
-
         usernameInput = (EditText)findViewById(R.id.txtUsername);
 
-        logInButton.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View view){
-                        Log.v("Username", usernameInput.getText().toString());
-                    }
-                });
     }
 }
