@@ -16,7 +16,10 @@ public class AppController extends Application{
 
     private static AppController mInstance;
 
+    //Todo change url from localhost when server is deployed
     private String baseUrl = "http://10.0.2.2:8080/";
+
+    private String username;
 
     @Override
     public void onCreate() {
@@ -55,5 +58,13 @@ public class AppController extends Application{
 
     public String getBaseUrl() {
         return baseUrl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

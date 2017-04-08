@@ -23,10 +23,10 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(new Intent(LogInActivity.this, MainMenuActivity.class));
     }
 
-    public void displayUserNotFound(){
+    public void displayMessage(String message){
         AlertDialog alertDialog = new AlertDialog.Builder(LogInActivity.this).create();
         alertDialog.setTitle("Error");
-        alertDialog.setMessage("User does not exist");
+        alertDialog.setMessage(message);
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -42,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void newAccount(View v){
-        controller.createUser(usernameInput.getText().toString());
+        controller.createUser(usernameInput.getText().toString(), this);
     }
 
     @Override

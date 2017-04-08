@@ -28,8 +28,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ExpandableListView
-        android:id="@+id/txtList"
+    <ListView
+        android:id="@+id/matchList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/txtActiveGames"
