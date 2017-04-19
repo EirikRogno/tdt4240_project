@@ -17,7 +17,7 @@ public class AppController extends Application{
     private static AppController mInstance;
 
     //Todo change url from localhost when server is deployed
-    private String baseUrl = "http://10.0.2.2:8080/";
+    private String baseUrl = "https://tdt4140-backend.herokuapp.com/";
 
     private String username;
 
