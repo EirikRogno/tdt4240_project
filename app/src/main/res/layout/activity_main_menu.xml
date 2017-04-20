@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
-        android:text="New game" />
+        android:text="New game"
+        android:onClick="newGame"/>
 
     <TextView
         android:id="@+id/txtActiveGames"

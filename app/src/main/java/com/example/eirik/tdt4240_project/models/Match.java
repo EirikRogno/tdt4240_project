@@ -14,6 +14,7 @@ public class Match {
     public Match(String playerOne, String player_two, String state){
         this.playerOne = playerOne;
         this.playerTwo = player_two;
+        this.state = state;
     }
 
 
