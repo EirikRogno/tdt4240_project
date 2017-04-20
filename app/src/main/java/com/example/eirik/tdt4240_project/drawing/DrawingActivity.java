@@ -14,6 +14,7 @@ public class DrawingActivity extends Activity {
     private TextView wordField;
     private Button sendButton;
     private Button colorButton;
+    private Button undoButton;
     private ColorPopup colors;
     private TextView currentColor;
 
@@ -38,6 +39,13 @@ public class DrawingActivity extends Activity {
             }
         });
 
+        this.undoButton = (Button)findViewById(R.id.undoButton);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                undo();
+            }
+        });
+
         this.currentColor = (TextView)findViewById(R.id.currentColor);
 
         startDrawingActivity();
@@ -46,6 +54,10 @@ public class DrawingActivity extends Activity {
     private void openColorPopup() {
         colors = new ColorPopup(this);
         colors.showDialog(this);
+    }
+
+    private void undo() {
+        drawingController.undoLastStroke();
     }
 
     public void changeColor(int color) { // user wants to change color from colorPopup-window, notify controller

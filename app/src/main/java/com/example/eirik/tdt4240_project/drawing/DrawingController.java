@@ -59,4 +59,10 @@ public class DrawingController extends View {
     public void changeStrokeWidth(int width) {
         currentTool = currentTool.changeSize(width);
     }
+
+    public void undoLastStroke() {
+        strokes = drawing.undoLastStroke();
+
+        invalidate();
+    }
 }

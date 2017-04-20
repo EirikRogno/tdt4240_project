@@ -40,4 +40,17 @@ public class Drawing {
         }
         return path;
     }
+
+    public Map<Path, Paint> undoLastStroke() {
+        if (strokes.size() > 0) {
+            Path lastStroke = null;
+            for (Path p: strokes.keySet()) {
+                lastStroke = p;
+            }
+            if (lastStroke != null) {
+                strokes.remove(lastStroke);
+            }
+        }
+        return strokes;
+    }
 }
