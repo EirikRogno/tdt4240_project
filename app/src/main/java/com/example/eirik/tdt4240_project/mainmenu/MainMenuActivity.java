@@ -1,4 +1,4 @@
-package com.example.eirik.tdt4240_project.mainmenu;
+package com.example.eirik.tdt4240_project.mainMenu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

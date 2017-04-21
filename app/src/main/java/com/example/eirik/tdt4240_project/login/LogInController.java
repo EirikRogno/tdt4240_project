@@ -1,4 +1,4 @@
-package com.example.eirik.tdt4240_project.login;
+package com.example.eirik.tdt4240_project.logIn;
 
 import android.util.Log;
 
