@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "125944871606",
+    "firebase_url": "https://drawly-84e14.firebaseio.com",
+    "project_id": "drawly-84e14",
+    "storage_bucket": "drawly-84e14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125944871606:android:118bd74cb131ee6b",
+        "android_client_info": {
+          "package_name": "com.example.eirik.tdt4240_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125944871606-r5vd45ni6i4387ol7v3m3bm4vfe6civg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9IaPQr9Tb23MkTauG03bNbNDtK5jdaYc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

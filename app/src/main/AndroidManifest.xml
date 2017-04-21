@@ -2,7 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.eirik.tdt4240_project">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- GCM requires a Google account to use push notifications. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <!-- Permission to get device hwid. This permission is optional, if not used, the random hwid is generated -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <!-- This permission is required for geolocation pushes, and is used to determine whether the device can access the network. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!-- Prevents other applications from registering and receiving the application's messages. -->
+    <!--<uses-permission android:name="com.example.eirik.tdt4240_project.permission.C2D_MESSAGE"/>-->
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
     <application
         android:name=".AppController"
@@ -11,6 +30,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="PW_APPID" android:value="D5772-61ECD" />
+        <meta-data android:name="PW_PROJECT_ID" android:value="A125944871606" />
+
         <activity android:name=".MainActivity"/>
         <activity android:name=".mainMenu.MainMenuActivity" />
         <activity android:name=".drawing.DrawingActivity" />
