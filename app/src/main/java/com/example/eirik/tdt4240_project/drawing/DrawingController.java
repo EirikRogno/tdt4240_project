@@ -12,13 +12,15 @@ import android.widget.TextView;
 
 import com.example.eirik.tdt4240_project.models.Drawing;
 
+import org.json.JSONException;
+
 import java.util.Map;
 
 public class DrawingController extends View {
 
     private Path currentPath;
     private Drawing drawing;
-    private Map<Path, Paint> strokes;
+    private Map<SerializablePath, Paint> strokes;
     private DrawingTool currentTool;
 
     public DrawingController(Context context, AttributeSet as){
@@ -58,6 +60,13 @@ public class DrawingController extends View {
 
     public void changeStrokeWidth(int width) {
         currentTool = currentTool.changeSize(width);
+    }
+
+    public void sendDrawing() throws JSONException{
+        String drawingString = drawing.toJsonString();
+        Drawing deserializ1ed = Drawing.fromJsonString(drawingString);
+        this.drawing = deserializ1ed;
+        invalidate();
     }
 
     public void undoLastStroke() {
