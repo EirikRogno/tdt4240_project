@@ -122,7 +122,7 @@ public class MainMenuController {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("state", "player_one_guessing");
+                    params.put("state", "player_one_drawing");
                     return params;
                 }};
 
