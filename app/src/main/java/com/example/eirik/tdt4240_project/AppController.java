@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.eirik.tdt4240_project.models.Match;
 
 public class AppController extends Application{
 
@@ -16,10 +17,22 @@ public class AppController extends Application{
 
     private static AppController mInstance;
 
-    //Todo change url from localhost when server is deployed
     private String baseUrl = "https://tdt4140-backend.herokuapp.com/";
+    
+    //For use with local testing
+    //private String baseUrl = "http://10.0.2.2:8080/";
 
     private String username;
+
+    public Match getCurrentMatch() {
+        return currentMatch;
+    }
+
+    public void setCurrentMatch(Match currentMatch) {
+        this.currentMatch = currentMatch;
+    }
+
+    private Match currentMatch;
 
     @Override
     public void onCreate() {

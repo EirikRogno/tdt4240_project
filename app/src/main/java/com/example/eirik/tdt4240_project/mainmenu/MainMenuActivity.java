@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
 import com.example.eirik.tdt4240_project.drawing.DrawingActivity;
 import com.example.eirik.tdt4240_project.guessing.GuessingActivity;
@@ -23,17 +24,23 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        updateMatchList();
+
+        AppController.getInstance().setCurrentMatch(null);
+
+    }
+
+    public void updateMatchList(){
         ListView listView = (ListView) findViewById(R.id.matchList);
 
         controller.getAndDisplayMatches(listView, getApplicationContext(), this);
-
     }
 
-    public void goToDrawingView(Match match){
+    public void goToDrawingView(){
         startActivity(new Intent(MainMenuActivity.this, DrawingActivity.class));
     }
 
-    public void goToGuessingView(Match match){
+    public void goToGuessingView(){
         startActivity(new Intent(MainMenuActivity.this, GuessingActivity.class));
     }
 
@@ -44,11 +51,11 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        controller.acceptInvitation(true, match);
+                        controller.acceptInvitation(true, match, MainMenuActivity.this);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
-                        controller.acceptInvitation(false, match);
+                        controller.acceptInvitation(false, match, MainMenuActivity.this);
                         break;
                 }
             }

@@ -27,13 +27,13 @@ import java.util.Map;
 public class MainMenuController {
 
     private AppController appController = AppController.getInstance();
-    private ArrayList<Match> matchList = new ArrayList<>();
+    private ArrayList<Match> matchList;
     private static MatchAdapter adapter;
 
 
     public void getAndDisplayMatches(ListView listView, Context context, final MainMenuActivity mainMenuActivity){
         String url = appController.getBaseUrl() + "match/" + appController.getUsername();
-
+        matchList = new ArrayList<>();
         adapter = new MatchAdapter(matchList, context);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,12 +80,25 @@ public class MainMenuController {
     }
 
     private void onMatchClick(Match match, MainMenuActivity mainMenuActivity) {
-        if(match.getState().equals("pending_invite")){
+        appController.setCurrentMatch(match);
+        if(match.getState().equals("pending_invite") && !match.getplayerTwo().equals(appController.getUsername())){
             mainMenuActivity.displayDialog("Accept invitation?", match);
+        }
+        else if(match.getState().equals("player_one_guessing") && match.getplayerOne().equals(appController.getUsername()) ){
+            mainMenuActivity.goToGuessingView();
+        }
+        else if(match.getState().equals("player_one_drawing") && match.getplayerOne().equals(appController.getUsername()) ){
+            mainMenuActivity.goToDrawingView();
+        }
+        else if(match.getState().equals("player_two_guessing") && match.getplayerTwo().equals(appController.getUsername()) ){
+            mainMenuActivity.goToGuessingView();
+        }
+        else if(match.getState().equals("player_two_drawing") && match.getplayerTwo().equals(appController.getUsername()) ){
+            mainMenuActivity.goToDrawingView();
         }
     }
 
-    public void acceptInvitation(boolean accept, Match match){
+    public void acceptInvitation(boolean accept, Match match, final MainMenuActivity mainMenuActivity){
 
         String url = appController.getBaseUrl() + "match/" + match.getId();
 
@@ -96,11 +109,13 @@ public class MainMenuController {
                         @Override
                         public void onResponse(String response) {
                             Log.d("json_obj_req", response);
+                            mainMenuActivity.updateMatchList();
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+                    mainMenuActivity.updateMatchList();
                 }
             }) {
 
@@ -119,12 +134,14 @@ public class MainMenuController {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d("json_obj_req", response.toString());
+                            mainMenuActivity.updateMatchList();
 
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+                    mainMenuActivity.updateMatchList();
                 }
             });
 
