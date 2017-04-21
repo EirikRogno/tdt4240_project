@@ -25,9 +25,17 @@ public class SerializablePath extends Path implements Serializable {
         super.lineTo(x, y);
     }
 
+    public void lineToNoAction(float x, float y) {
+        super.lineTo(x, y);
+    }
+
     @Override
     public void moveTo(float x, float y) {
         actions.add(new Move(x, y));
+        super.moveTo(x, y);
+    }
+
+    public void moveToNoAction(float x, float y) {
         super.moveTo(x, y);
     }
 
@@ -37,9 +45,13 @@ public class SerializablePath extends Path implements Serializable {
         super.quadTo(x1, y1, x2, y2);
     }
 
+    public void quadToNoAction(float x1, float y1, float x2, float y2) {
+        super.quadTo(x1, y1, x2, y2);
+    }
+
     private interface Action extends Serializable {
 
-        void perform(Path path);
+        void perform(SerializablePath path);
     }
 
     private static final class Move implements Action {
@@ -52,8 +64,8 @@ public class SerializablePath extends Path implements Serializable {
         }
 
         @Override
-        public void perform(Path path) {
-            path.moveTo(x, y);
+        public void perform(SerializablePath path) {
+            path.moveToNoAction(x, y);
         }
     }
 
@@ -67,8 +79,8 @@ public class SerializablePath extends Path implements Serializable {
         }
 
         @Override
-        public void perform(Path path) {
-            path.lineTo(x, y);
+        public void perform(SerializablePath path) {
+            path.lineToNoAction(x, y);
         }
     }
 
@@ -84,8 +96,8 @@ public class SerializablePath extends Path implements Serializable {
         }
 
         @Override
-        public void perform(Path path) {
-            path.quadTo(x1, y1, x2, y2);
+        public void perform(SerializablePath path) {
+            path.quadToNoAction(x1, y1, x2, y2);
         }
     }
 }

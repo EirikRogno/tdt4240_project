@@ -1,7 +1,9 @@
 package com.example.eirik.tdt4240_project.drawing;
 
 import android.app.Activity;
+import android.app.ExpandableListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -59,6 +61,13 @@ public class DrawingActivity extends Activity {
 
     private void stopDrawingActivity() {
         // send drawing to server
+        Log.d("drawing", "About to send the drawing to the server, please wait for lift-off");
+        try {
+            drawingController.sendDrawing();
+        } catch (Exception e) {
+            // Display error to user
+        }
+
     }
 
 }

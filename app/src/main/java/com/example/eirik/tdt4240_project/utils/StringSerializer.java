@@ -1,6 +1,7 @@
 package com.example.eirik.tdt4240_project.utils;
 
 import android.support.annotation.Nullable;
+import android.util.Base64;
 import android.util.Log;
 
 import java.io.ByteArrayInputStream;
@@ -24,26 +25,26 @@ public class StringSerializer {
             ObjectOutputStream so = new ObjectOutputStream(bo);
             so.writeObject(o);
             so.flush();
-            serializedObject = bo.toString();
+            return new String(Base64.encode(bo.toByteArray(), Base64.DEFAULT));
         } catch (Exception e) {
             Log.d("serializer", e.getMessage());
+            return null;
         }
-
-        return serializedObject;
     }
 
     @Nullable
     public static <T extends Object> T constructFromString(String s) {
         // deserialize the object
         try {
-            byte b[] = s.getBytes();
+            byte b[] = Base64.decode(s.getBytes(), Base64.DEFAULT);
             ByteArrayInputStream bi = new ByteArrayInputStream(b);
             ObjectInputStream si = new ObjectInputStream(bi);
             T obj = (T) si.readObject();
             return obj;
         } catch (Exception e) {
             Log.d("serializer", e.getMessage());
+            return null;
         }
-        return null;
+
     }
 }
