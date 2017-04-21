@@ -3,6 +3,19 @@
     package="com.example.eirik.tdt4240_project">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+
+    <permission
+        android:protectionLevel="signature"
+        android:name="com.example.eirik.tdt4240_project.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.example.eirik.tdt4240_project.permission.C2D_MESSAGE" />
 
     <application
         android:name=".AppController"
@@ -11,7 +24,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
+
+
+        <meta-data android:name="PW_APPID" android:value="10526-073D2" />
+        <meta-data android:name="PW_PROJECT_ID" android:value="A477058985642" />
+
+        <activity android:name=".MainActivity" android:label="Drawly Android Project" />
+
         <activity android:name=".mainmenu.MainMenuActivity" />
         <activity android:name=".drawing.DrawingActivity" />
         <activity
@@ -23,6 +42,46 @@
             </intent-filter>
         </activity>
         <activity android:name=".guessing.GuessingActivity" />
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name="com.pushwoosh.richpages.RichPageActivity" />
+        <activity android:name="com.pushwoosh.MessageActivity" />
+        <activity android:name="com.pushwoosh.PushHandlerActivity" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.example.eirik.tdt4240_project" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.pushwoosh.GCMListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.pushwoosh.GCMInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.pushwoosh.GCMRegistrationService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>
+
+

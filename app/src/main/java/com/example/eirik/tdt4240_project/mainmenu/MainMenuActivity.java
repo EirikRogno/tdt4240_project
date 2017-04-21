@@ -20,4 +20,6 @@ public class MainMenuActivity extends AppCompatActivity {
         controller.getAndDisplayMatches(listView, getApplicationContext());
 
     }
+
+
 }
