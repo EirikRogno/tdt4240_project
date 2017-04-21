@@ -6,13 +6,21 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.models.Drawing;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -22,6 +30,8 @@ public class DrawingController extends View {
     private Drawing drawing;
     private Map<SerializablePath, Paint> strokes;
     private DrawingTool currentTool;
+
+    AppController appController = AppController.getInstance();
 
     public DrawingController(Context context, AttributeSet as){
         super(context, as);
@@ -63,10 +73,26 @@ public class DrawingController extends View {
     }
 
     public void sendDrawing() throws JSONException{
-        String drawingString = drawing.toJsonString();
-        Drawing deserializ1ed = Drawing.fromJsonString(drawingString);
-        this.drawing = deserializ1ed;
-        invalidate();
+        JSONObject jsonDrawing = drawing.toJson();
+
+        String url = appController.getBaseUrl() + "drawing";
+        Log.d("", jsonDrawing.toString());
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
+                url, jsonDrawing,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("json_obj_req", response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+            }
+        });
+
+        appController.addToRequestQueue(request);
+
     }
 
     public void undoLastStroke() {

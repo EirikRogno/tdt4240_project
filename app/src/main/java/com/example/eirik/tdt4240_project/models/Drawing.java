@@ -37,7 +37,7 @@ public class Drawing {
         id = "";
         userId = "username";
         word = "";
-        matchId = "";
+        matchId = "0";
         timestamp = null;
 
         path = new SerializablePath(); // follows the path of drawing
@@ -82,7 +82,9 @@ public class Drawing {
     *
     *
     * */
-    public String toJsonString() throws JSONException{
+
+
+    public JSONObject toJson() throws JSONException{
         /*
         * Create JSON object with matchid, username, word and image.
         *
@@ -111,9 +113,11 @@ public class Drawing {
 
         json.put("image", image);
 
-        String jsonString = json.toString();
+        return json;
+    }
 
-        return jsonString;
+    public String toJsonString() throws JSONException{
+        return this.toJson().toString();
     }
 
     public static Drawing fromJsonString(String serializedDrawing)throws JSONException{
