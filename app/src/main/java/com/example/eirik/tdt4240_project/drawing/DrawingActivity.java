@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.eirik.tdt4240_project.R;
@@ -15,7 +16,8 @@ public class DrawingActivity extends Activity {
     private DrawingController drawingController;
     private TextView wordField;
     private Button sendButton;
-    private Button colorButton;
+    private ImageButton colorButton;
+    private ImageButton undoButton;
     private ColorPopup colors;
     private TextView currentColor;
 
@@ -33,10 +35,17 @@ public class DrawingActivity extends Activity {
             }
         });
 
-        this.colorButton = (Button)findViewById(R.id.colorButton);
+        this.colorButton = (ImageButton)findViewById(R.id.colorButton);
         colorButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openColorPopup();
+            }
+        });
+
+        this.undoButton = (ImageButton)findViewById(R.id.undoButton);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                undo();
             }
         });
 
@@ -48,6 +57,10 @@ public class DrawingActivity extends Activity {
     private void openColorPopup() {
         colors = new ColorPopup(this);
         colors.showDialog(this);
+    }
+
+    private void undo() {
+        drawingController.undoLastStroke();
     }
 
     public void changeColor(int color) { // user wants to change color from colorPopup-window, notify controller

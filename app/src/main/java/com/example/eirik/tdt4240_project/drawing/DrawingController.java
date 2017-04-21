@@ -68,4 +68,10 @@ public class DrawingController extends View {
         this.drawing = deserializ1ed;
         invalidate();
     }
+
+    public void undoLastStroke() {
+        strokes = drawing.undoLastStroke();
+
+        invalidate();
+    }
 }

@@ -8,4 +8,7 @@
     <color name="green">#FF99CC00</color>
     <color name="yellow">#ffffff00</color>
     <color name="blue">#FF33B5E5</color>
+    <color name="background">#91cbde</color>
+    <color name="button">#50ba6e</color>
+    <color name ="white">#ffffff</color>
 </resources>

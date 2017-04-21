@@ -175,4 +175,17 @@ public class Drawing {
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
+
+    public Map<Path, Paint> undoLastStroke() {
+        if (strokes.size() > 0) {
+            Path lastStroke = null;
+            for (Path p: strokes.keySet()) {
+                lastStroke = p;
+            }
+            if (lastStroke != null) {
+                strokes.remove(lastStroke);
+            }
+        }
+        return strokes;
+    }
 }
