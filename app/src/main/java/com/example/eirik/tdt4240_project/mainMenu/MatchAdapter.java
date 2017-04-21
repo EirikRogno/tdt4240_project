@@ -1,6 +1,7 @@
-package com.example.eirik.tdt4240_project.mainmenu;
+package com.example.eirik.tdt4240_project.mainMenu;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class MatchAdapter extends ArrayAdapter<Match> implements View.OnClickLis
         int position=(Integer) v.getTag();
         Object object= getItem(position);
         Match match=(Match) object;
+
+        Log.d("id:", match.getId());
 
         //Todo implement clicking on match
     }

@@ -1,6 +1,7 @@
 package com.example.eirik.tdt4240_project.newGame;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.eirik.tdt4240_project.R;
+import com.example.eirik.tdt4240_project.mainMenu.MainMenuActivity;
 
 public class NewGameActivity extends AppCompatActivity {
 
@@ -23,6 +25,10 @@ public class NewGameActivity extends AppCompatActivity {
 
     public void createNewGame(View v){
         controller.createNewGame(usernameInput.getText().toString(), this);
+    }
+
+    public void returnToMainMenu(){
+        startActivity(new Intent(NewGameActivity.this, MainMenuActivity.class));
     }
 
     public void displayMessage(String message){

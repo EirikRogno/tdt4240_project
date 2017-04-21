@@ -1,4 +1,4 @@
-package com.example.eirik.tdt4240_project.mainmenu;
+package com.example.eirik.tdt4240_project.mainMenu;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.eirik.tdt4240_project.R;
-import com.example.eirik.tdt4240_project.login.LogInActivity;
 import com.example.eirik.tdt4240_project.newGame.NewGameActivity;
 
 public class MainMenuActivity extends AppCompatActivity {

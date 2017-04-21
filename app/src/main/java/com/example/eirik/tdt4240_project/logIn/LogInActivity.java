@@ -1,17 +1,15 @@
-package com.example.eirik.tdt4240_project.login;
+package com.example.eirik.tdt4240_project.logIn;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.eirik.tdt4240_project.R;
-import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
+import com.example.eirik.tdt4240_project.mainMenu.MainMenuActivity;
 
 
 public class LogInActivity extends AppCompatActivity {

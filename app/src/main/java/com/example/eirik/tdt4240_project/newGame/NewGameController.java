@@ -31,7 +31,7 @@ public class NewGameController {
                         if(response.equals("")){
                             newGameActivity.displayMessage("User does not exist!");
                         }else {
-                            postNewGame(userID, appController.getUsername());
+                            postNewGame(userID, appController.getUsername(), newGameActivity);
                         }
 
                     }
@@ -46,7 +46,7 @@ public class NewGameController {
 
     }
 
-    private void postNewGame(final String user1, final String user2){
+    private void postNewGame(final String user1, final String user2, final NewGameActivity newGameActivity){
 
         String url = appController.getBaseUrl() + "match/";
         Log.d(user1,user2);
@@ -61,6 +61,7 @@ public class NewGameController {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("json_obj_req", response.toString());
+                        newGameActivity.returnToMainMenu();
                     }
                 }, new Response.ErrorListener() {
             @Override

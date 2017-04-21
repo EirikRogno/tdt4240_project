@@ -1,4 +1,4 @@
-package com.example.eirik.tdt4240_project.mainmenu;
+package com.example.eirik.tdt4240_project.mainMenu;
 
 import android.content.Context;
 import android.util.Log;
@@ -40,7 +40,7 @@ public class MainMenuController {
                             try {
 
                                 JSONObject obj = response.getJSONObject(i);
-                                Match match = new Match(obj.getString("playerOne"), obj.getString("playerTwo"), obj.getString("state"));
+                                Match match = new Match(obj.getString("playerOne"), obj.getString("playerTwo"), obj.getString("state"), obj.getString("id"));
 
                                 matchList.add(match);
 
