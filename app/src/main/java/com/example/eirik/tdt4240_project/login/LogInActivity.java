@@ -1,4 +1,4 @@
-package com.example.eirik.tdt4240_project.logIn;
+package com.example.eirik.tdt4240_project.login;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.eirik.tdt4240_project.R;
-import com.example.eirik.tdt4240_project.mainMenu.MainMenuActivity;
+import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
 
 
 public class LogInActivity extends AppCompatActivity {

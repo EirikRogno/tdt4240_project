@@ -1,7 +1,6 @@
-package com.example.eirik.tdt4240_project.mainMenu;
+package com.example.eirik.tdt4240_project.mainmenu;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import com.example.eirik.tdt4240_project.models.Match;
 
 import java.util.ArrayList;
 
-public class MatchAdapter extends ArrayAdapter<Match> implements View.OnClickListener {
+public class MatchAdapter extends ArrayAdapter<Match>{
 
     private ArrayList<Match> dataSet;
     Context mContext;
@@ -28,18 +27,6 @@ public class MatchAdapter extends ArrayAdapter<Match> implements View.OnClickLis
         super(context, R.layout.match_list_item, matches);
         this.dataSet = matches;
         this.mContext = context;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        int position=(Integer) v.getTag();
-        Object object= getItem(position);
-        Match match=(Match) object;
-
-        Log.d("id:", match.getId());
-
-        //Todo implement clicking on match
     }
 
     @Override

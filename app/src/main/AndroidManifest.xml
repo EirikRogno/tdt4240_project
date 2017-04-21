@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".mainMenu.MainMenuActivity" />
+        <activity android:name=".mainmenu.MainMenuActivity" />
         <activity android:name=".drawing.DrawingActivity" />
         <activity
-            android:name=".logIn.LogInActivity"
+            android:name=".login.LogInActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
