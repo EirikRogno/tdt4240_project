@@ -176,7 +176,7 @@ public class Drawing {
         this.timestamp = timestamp;
     }
 
-    public Map<Path, Paint> undoLastStroke() {
+    public Map<SerializablePath, Paint> undoLastStroke() {
         if (strokes.size() > 0) {
             Path lastStroke = null;
             for (Path p: strokes.keySet()) {
