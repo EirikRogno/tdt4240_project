@@ -25,7 +25,7 @@ public class GuessingController {
     }
 
     public void correctGuess(String guess, GuessingActivity guessingActivity){
-        if (guess.equals(getWord())){
+        if (guess.toLowerCase().equals(getWord().toLowerCase())){
             guessingActivity.displayMessage("Correct!", "You guessed correct! Wooohooo, you're amazing!", "OK");
             final Match match = appController.getCurrentMatch();
 

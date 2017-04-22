@@ -7,26 +7,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#91cbde"
     tools:context=".newGame.NewGameActivity">
+
     <EditText
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Username to invite"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:background="#fff"
+        android:ems="10"
+        android:hint="Username to invite"
+        android:inputType="textPersonName"
+        android:paddingBottom="2dp"
+        android:paddingTop="5dp" />
 
     <Button
         android:id="@+id/btnCreateNewGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Invite User"
         android:layout_below="@+id/txtUsername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
-        android:onClick="createNewGame"/>
+        android:background="#80ba6e"
+        android:onClick="createNewGame"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Invite User"
+        android:textColor="#fff" />
 
 </RelativeLayout>
