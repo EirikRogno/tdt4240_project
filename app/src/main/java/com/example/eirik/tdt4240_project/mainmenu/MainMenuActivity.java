@@ -30,6 +30,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     }
 
+    public void refresh(View v){
+        updateMatchList();
+    }
+
     public void updateMatchList(){
         ListView listView = (ListView) findViewById(R.id.matchList);
 
