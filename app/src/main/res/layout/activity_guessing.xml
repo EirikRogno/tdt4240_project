@@ -7,6 +7,45 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#91cbde"
     tools:context="com.example.eirik.tdt4240_project.guessing.GuessingActivity">
+
+    <EditText
+        android:id="@+id/txtWordGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Word"
+        android:background="#ffffff"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/guessButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
+
+    <Button
+        android:id="@+id/guessButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtWordGuess"
+        android:layout_alignLeft="@+id/txtWordGuess"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txtWordGuess"
+        android:layout_alignStart="@+id/txtWordGuess"
+        android:layout_marginBottom="41dp"
+        android:background="#80ba6e"
+        android:onClick="makeGuess"
+        android:text="Guess"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="IT'S YOUR TIME TO GUESS"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
