@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
 import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
 
@@ -53,7 +54,7 @@ public class DrawingActivity extends Activity {
 
         this.currentColor = (TextView)findViewById(R.id.currentColor);
 
-        startDrawingActivity();
+        drawingController.getRemoteWord(this);
     }
 
     private void openColorPopup() {
@@ -69,10 +70,8 @@ public class DrawingActivity extends Activity {
         drawingController.changeColor(color, currentColor);
     }
 
-    private void startDrawingActivity() {
+    public void startDrawingActivity(String word) {
         // get a word from server
-
-        String word = "Banana";
         drawingController.getDrawing().setWord(word);
         wordField.setText(word);
     }

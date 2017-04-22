@@ -9,24 +9,30 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.eirik.tdt4240_project.AppController;
+import com.example.eirik.tdt4240_project.mainmenu.MatchAdapter;
 import com.example.eirik.tdt4240_project.models.Drawing;
 import com.example.eirik.tdt4240_project.models.Match;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class DrawingController extends View {
 
@@ -184,5 +190,46 @@ public class DrawingController extends View {
         strokes = drawing.undoLastStroke();
 
         invalidate();
+    }
+
+    public void getRemoteWord(final DrawingActivity drawingActivity) {
+
+        String url = appController.getBaseUrl() + "word/";
+
+        final ArrayList<String> wordList = new ArrayList<>();
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("json_obj_req", response.toString());
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+
+                                JSONObject obj = response.getJSONObject(i);
+                                String word = obj.getString("word");
+
+                                wordList.add(word);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        Random random = new Random();
+
+                        int randomNumber = random.nextInt(wordList.size());
+                        drawingActivity.startDrawingActivity(wordList.get(randomNumber));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+            }
+        });
+
+        appController.addToRequestQueue(request);
+
     }
 }

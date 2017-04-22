@@ -89,8 +89,6 @@ public class Drawing {
         *
         * */
 
-        Log.d("Word", this.getWord());
-
         // Drawing meta
         JSONObject json = new JSONObject();
         json.put("id", null);
