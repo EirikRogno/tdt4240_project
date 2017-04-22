@@ -32,6 +32,8 @@ public class DrawingController extends View {
     private Drawing drawing;
     private Map<SerializablePath, Paint> strokes;
     private DrawingTool currentTool;
+    private DrawingTool eraser;
+    private DrawingTool lastBrush; // remembers last brush before changing to eraser
 
     AppController appController = AppController.getInstance();
 
@@ -40,6 +42,7 @@ public class DrawingController extends View {
         drawing = new Drawing();
         currentPath = new Path();
         currentTool = new Pen(Color.BLACK, 5);
+        eraser = new Eraser();
     }
 
     @Override
@@ -103,5 +106,14 @@ public class DrawingController extends View {
         strokes = drawing.undoLastStroke();
 
         invalidate();
+    }
+
+    public void activateErasor() {
+        lastBrush = currentTool;
+        currentTool = eraser;
+    }
+
+    public void activatePencil() {
+        currentTool = lastBrush;
     }
 }

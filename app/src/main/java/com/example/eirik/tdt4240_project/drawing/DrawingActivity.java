@@ -19,6 +19,8 @@ public class DrawingActivity extends Activity {
     private ImageButton colorButton;
     private ImageButton undoButton;
     private ColorPopup colors;
+    private ImageButton pencilButton;
+    private ImageButton eraserButton;
     private TextView currentColor;
 
     @Override
@@ -51,6 +53,20 @@ public class DrawingActivity extends Activity {
 
         this.currentColor = (TextView)findViewById(R.id.currentColor);
 
+        this.eraserButton = (ImageButton)findViewById(R.id.eraser);
+        eraserButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                activateEraser();
+            }
+        });
+
+        this.pencilButton = (ImageButton)findViewById(R.id.pencil);
+        pencilButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                activatePencil();
+            }
+        });
+
         startDrawingActivity();
     }
 
@@ -65,6 +81,22 @@ public class DrawingActivity extends Activity {
 
     public void changeColor(int color) { // user wants to change color from colorPopup-window, notify controller
         drawingController.changeColor(color, currentColor);
+    }
+
+    public void activateEraser() {
+        pencilButton.setAlpha(0.5f);
+        eraserButton.setAlpha(1.0f);
+        colorButton.setAlpha(0f);
+        currentColor.setAlpha(0f);
+        drawingController.activateErasor();
+    }
+
+    public void activatePencil() {
+        pencilButton.setAlpha(1.0f);
+        eraserButton.setAlpha(0.5f);
+        colorButton.setAlpha(1f);
+        currentColor.setAlpha(1f);
+        drawingController.activatePencil();
     }
 
     private void startDrawingActivity() {
