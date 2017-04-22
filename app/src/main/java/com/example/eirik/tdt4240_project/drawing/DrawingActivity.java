@@ -19,8 +19,10 @@ public class DrawingActivity extends Activity {
     private ImageButton colorButton;
     private ImageButton undoButton;
     private ColorPopup colors;
+    private BrushSizePopup brushSize;
     private ImageButton pencilButton;
     private ImageButton eraserButton;
+    private ImageButton brushSizeButton;
     private TextView currentColor;
 
     @Override
@@ -41,6 +43,13 @@ public class DrawingActivity extends Activity {
         colorButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openColorPopup();
+            }
+        });
+
+        this.brushSizeButton = (ImageButton)findViewById(R.id.brushSizeButton);
+        brushSizeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openBrushSizePopup();
             }
         });
 
@@ -75,6 +84,11 @@ public class DrawingActivity extends Activity {
         colors.showDialog(this);
     }
 
+    private void openBrushSizePopup() {
+        brushSize = new BrushSizePopup(this);
+        brushSize.showDialog(this);
+    }
+
     private void undo() {
         drawingController.undoLastStroke();
     }
@@ -83,11 +97,16 @@ public class DrawingActivity extends Activity {
         drawingController.changeColor(color, currentColor);
     }
 
+    public void changeSize(int size) { // user wants to change brush size from brushSizePopup-window, notify controller
+        drawingController.changeBrushSize(size);
+    }
+
     public void activateEraser() {
         pencilButton.setAlpha(0.5f);
         eraserButton.setAlpha(1.0f);
         colorButton.setAlpha(0f);
         currentColor.setAlpha(0f);
+        brushSizeButton.setAlpha(0f);
         drawingController.activateErasor();
     }
 
@@ -96,6 +115,7 @@ public class DrawingActivity extends Activity {
         eraserButton.setAlpha(0.5f);
         colorButton.setAlpha(1f);
         currentColor.setAlpha(1f);
+        brushSizeButton.setAlpha(1f);
         drawingController.activatePencil();
     }
 

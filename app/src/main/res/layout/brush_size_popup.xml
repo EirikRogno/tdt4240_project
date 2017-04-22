@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50sp"
+        android:text="Velg penselstørrelse"
+        android:id="@+id/text_dialog"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="50dp"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/close"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:layout_below="@+id/text_dialog"
+        android:layout_centerHorizontal="true"
+        android:background="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginTop="30dp"
+        android:text="Lukk" />
+
+    <!-- Extra small brush -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/xsmall"
+        android:layout_width="40dp"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/x_small"
+        android:layout_alignTop="@+id/small"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <!-- Small brush -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/small"
+        android:layout_width="40dp"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/small"
+        android:layout_above="@+id/close"
+        android:layout_toRightOf="@+id/xsmall"
+        android:layout_toEndOf="@+id/xsmall" />
+
+    <!-- Medium brush -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/medium"
+        android:layout_width="40dp"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/medium"
+        android:layout_alignTop="@+id/small"
+        android:layout_toRightOf="@+id/small"
+        android:layout_toEndOf="@+id/small" />
+
+    <!-- Large brush -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/large"
+        android:layout_width="40dp"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/large"
+        android:layout_alignTop="@+id/medium"
+        android:layout_toRightOf="@+id/medium"
+        android:layout_toEndOf="@+id/medium" />
+
+</RelativeLayout>

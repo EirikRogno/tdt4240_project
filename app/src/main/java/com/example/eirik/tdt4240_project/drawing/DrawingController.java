@@ -75,8 +75,8 @@ public class DrawingController extends View {
         currentTool = currentTool.changeColor(color);
     }
 
-    public void changeStrokeWidth(int width) {
-        currentTool = currentTool.changeSize(width);
+    public void changeBrushSize(int size) {
+        currentTool = currentTool.changeSize(size);
     }
 
     public void sendDrawing() throws JSONException{

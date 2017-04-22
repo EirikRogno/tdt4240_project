@@ -14,7 +14,7 @@ public class Eraser implements DrawingTool {
     Eraser() {
         paint = new Paint();
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(40);
+        paint.setStrokeWidth(50);
         paint.setStyle(Paint.Style.STROKE);
     }
 

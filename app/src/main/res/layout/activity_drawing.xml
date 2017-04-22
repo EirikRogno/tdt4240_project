@@ -125,6 +125,22 @@
         android:layout_alignBottom="@+id/pencil"
         android:alpha="0.5"/>
 
+    <!-- Brush size button -->
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/brushSizeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/colorButton"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/colorButton"
+        android:layout_toRightOf="@+id/colorButton"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true"
+        android:maxHeight="32dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/size_bw" />
+
 </RelativeLayout>
 
 
