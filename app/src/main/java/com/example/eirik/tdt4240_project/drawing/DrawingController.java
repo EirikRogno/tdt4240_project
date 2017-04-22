@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -64,7 +66,9 @@ public class DrawingController extends View {
     }
 
     public void changeColor(int color, TextView currentColorView) { // makes new tool
-        currentColorView.setBackgroundColor(color); // in GUI
+        //currentColorView.setBackgroundColor(color); // in GUI
+        GradientDrawable background = (GradientDrawable) currentColorView.getBackground();
+        background.setColor(color);
         currentTool = currentTool.changeColor(color);
     }
 

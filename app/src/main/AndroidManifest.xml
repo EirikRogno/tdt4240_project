@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".mainmenu.MainMenuActivity" />
-        <activity android:name=".drawing.DrawingActivity" />
+        <activity android:name=".drawing.DrawingActivity" android:exported="true" />
         <activity
             android:name=".login.LogInActivity"
             android:theme="@style/AppTheme.NoActionBar">
