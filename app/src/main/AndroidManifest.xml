@@ -15,14 +15,15 @@
         <activity android:name=".mainmenu.MainMenuActivity" />
         <activity android:name=".drawing.DrawingActivity" />
         <activity
-            android:name=".login.LogInActivity"
+            android:name=".guessing.GuessingActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".guessing.GuessingActivity" />
+        <activity android:name=".login.LogInActivity" />
+
     </application>
 
 </manifest>
