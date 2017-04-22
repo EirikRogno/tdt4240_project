@@ -1,4 +1,4 @@
-package com.example.eirik.tdt4240_project.login;
+package com.example.eirik.tdt4240_project.newGame;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,18 +11,28 @@ import android.widget.EditText;
 import com.example.eirik.tdt4240_project.R;
 import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
 
+public class NewGameActivity extends AppCompatActivity {
 
-public class LogInActivity extends AppCompatActivity {
-
+    NewGameController controller = new NewGameController();
     EditText usernameInput;
-    LogInController controller = new LogInController();
 
-    public void goToMainMenu(){
-        startActivity(new Intent(LogInActivity.this, MainMenuActivity.class));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_game);
+        usernameInput = (EditText)findViewById(R.id.txtUsername);
+    }
+
+    public void createNewGame(View v){
+        controller.createNewGame(usernameInput.getText().toString(), this);
+    }
+
+    public void returnToMainMenu(){
+        startActivity(new Intent(NewGameActivity.this, MainMenuActivity.class));
     }
 
     public void displayMessage(String message){
-        AlertDialog alertDialog = new AlertDialog.Builder(LogInActivity.this).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(NewGameActivity.this).create();
         alertDialog.setTitle("Error");
         alertDialog.setMessage(message);
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -32,23 +42,5 @@ public class LogInActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
-    }
-
-
-    public void logIn(View v){
-        controller.getUser(usernameInput.getText().toString(), this);
-    }
-
-    public void newAccount(View v){
-        controller.createUser(usernameInput.getText().toString(), this);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
-
-        usernameInput = (EditText)findViewById(R.id.txtUsername);
-
     }
 }

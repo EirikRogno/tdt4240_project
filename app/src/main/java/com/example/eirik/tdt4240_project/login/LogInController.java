@@ -54,9 +54,13 @@ public class LogInController {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("json_obj_req", response.toString());
-                        appController.setUsername(userID);
-                        logInActivity.goToMainMenu();
+                        Log.d("json_obj_req", response);
+                        if(response.equals("")){
+                            logInActivity.displayMessage("Username taken!");
+                        }else {
+                            appController.setUsername(userID);
+                            logInActivity.goToMainMenu();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
