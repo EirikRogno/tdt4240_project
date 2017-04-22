@@ -24,6 +24,16 @@ public class AppController extends Application{
 
     private String username;
 
+    public String getCurrentWord() {
+        return currentWord;
+    }
+
+    public void setCurrentWord(String currentWord) {
+        this.currentWord = currentWord;
+    }
+
+    private String currentWord;
+
     public Match getCurrentMatch() {
         return currentMatch;
     }

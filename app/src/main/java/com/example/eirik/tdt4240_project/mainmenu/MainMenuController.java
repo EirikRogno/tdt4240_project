@@ -73,8 +73,6 @@ public class MainMenuController {
             }
         });
 
-        Log.d("matches", matchList.toString());
-
         appController.addToRequestQueue(request);
 
     }
@@ -98,7 +96,7 @@ public class MainMenuController {
         }
     }
 
-    public void acceptInvitation(boolean accept, Match match, final MainMenuActivity mainMenuActivity){
+    public void acceptInvitation(boolean accept, final Match match, final MainMenuActivity mainMenuActivity){
 
         String url = appController.getBaseUrl() + "match/" + match.getId();
 
@@ -122,7 +120,7 @@ public class MainMenuController {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("state", "player_one_drawing");
+                    params.put("state", match.getAllowedStates().get(0));
                     return params;
                 }};
 

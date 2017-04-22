@@ -2,8 +2,10 @@ package com.example.eirik.tdt4240_project.models;
 
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 import android.view.MotionEvent;
 
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.drawing.PaintSerializer;
 import com.example.eirik.tdt4240_project.drawing.SerializablePath;
 import com.example.eirik.tdt4240_project.utils.StringSerializer;
@@ -12,8 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -35,9 +35,8 @@ public class Drawing {
 
     public Drawing() {
         id = "";
-        userId = "username";
-        word = "";
-        matchId = "0";
+        userId = AppController.getInstance().getUsername();
+        matchId = AppController.getInstance().getCurrentMatch().getId();
         timestamp = null;
 
         path = new SerializablePath(); // follows the path of drawing
@@ -96,7 +95,6 @@ public class Drawing {
         json.put("userId", this.getUserId());
         json.put("word", this.getWord());
         json.put("matchId", this.getMatchId());
-        json.put("timestamp", null);
 
         JSONArray image = new JSONArray();
 

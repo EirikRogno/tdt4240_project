@@ -9,7 +9,8 @@ public class Match {
     private String id;
     private String state;
 
-    private List<String> allowedStates = Arrays.asList("playerOne_drawing", "player_two_drawing", "playerOne_guessing", "player_two_guessing", "pending_invite");
+
+    private static List<String> allowedStates = Arrays.asList("player_one_drawing", "player_two_guessing", "player_two_drawing", "player_one_guessing", "pending_invite");
 
     public Match(String playerOne, String player_two, String state, String id){
         this.playerOne = playerOne;
@@ -18,6 +19,9 @@ public class Match {
         this.id = id;
     }
 
+    public static List<String> getAllowedStates() {
+        return allowedStates;
+    }
 
     public String getplayerOne() {
         return playerOne;
