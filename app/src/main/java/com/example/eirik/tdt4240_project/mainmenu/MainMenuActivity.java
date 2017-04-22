@@ -36,9 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void logOut(View v){
-        AppController.getInstance().setUsername(null);
-        startActivity(new Intent(MainMenuActivity.this, LogInActivity.class));
-
+        controller.logout(this);
     }
 
     public void updateMatchList(){
