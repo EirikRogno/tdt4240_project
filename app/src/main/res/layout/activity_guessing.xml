@@ -10,32 +10,41 @@
     android:background="#91cbde"
     tools:context="com.example.eirik.tdt4240_project.guessing.GuessingActivity">
 
+    <com.example.eirik.tdt4240_project.drawing.DrawingController
+        android:id="@+id/drawing"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom = "90dp"
+        android:layout_width="fill_parent" />
+
     <EditText
         android:id="@+id/txtWordGuess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#ffffff"
         android:ems="10"
         android:hint="Word"
-        android:background="#ffffff"
         android:inputType="textPersonName"
+        android:layout_marginBottom="10dp"
         android:layout_above="@+id/guessButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/guessButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/txtWordGuess"
-        android:layout_alignLeft="@+id/txtWordGuess"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/txtWordGuess"
-        android:layout_alignStart="@+id/txtWordGuess"
-        android:layout_marginBottom="41dp"
         android:background="#80ba6e"
         android:onClick="makeGuess"
         android:text="Guess"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/txtWordGuess"
+        android:layout_alignStart="@+id/txtWordGuess"
+        android:layout_alignRight="@+id/txtWordGuess"
+        android:layout_alignEnd="@+id/txtWordGuess" />
 
     <TextView
         android:id="@+id/textView"

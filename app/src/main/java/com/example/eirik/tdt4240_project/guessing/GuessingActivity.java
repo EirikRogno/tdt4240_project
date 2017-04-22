@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
+import com.example.eirik.tdt4240_project.drawing.DrawingController;
 
 public class GuessingActivity extends AppCompatActivity {
 
     private EditText guessInput;
     private Button button;
-    GuessingController controller = new GuessingController();
+    private GuessingController controller = new GuessingController();
+    private DrawingController drawingController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,9 @@ public class GuessingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guessing);
         guessInput = (EditText)findViewById(R.id.txtWordGuess);
         button = (Button) findViewById(R.id.guessButton);
+        drawingController =  (DrawingController)findViewById(R.id.drawing);
+        drawingController.setDrawingEnable(false);
+        drawingController.getDrawing(AppController.getInstance().getCurrentMatch().getId());
     }
 
     public void goToNextState(){

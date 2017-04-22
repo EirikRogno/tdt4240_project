@@ -16,12 +16,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.models.Drawing;
+import com.example.eirik.tdt4240_project.models.Match;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DrawingController extends View {
@@ -30,6 +34,7 @@ public class DrawingController extends View {
     private Drawing drawing;
     private Map<SerializablePath, Paint> strokes;
     private DrawingTool currentTool;
+    private boolean drawingEnable;
 
     AppController appController = AppController.getInstance();
 
@@ -38,6 +43,11 @@ public class DrawingController extends View {
         drawing = new Drawing();
         currentPath = new Path();
         currentTool = new Pen(Color.BLACK, 5);
+        drawingEnable = true;
+    }
+
+    public void setDrawingEnable(boolean drawingEnable){
+        this.drawingEnable = drawingEnable;
     }
 
     @Override
@@ -55,11 +65,12 @@ public class DrawingController extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        currentPath = drawing.addStroke(event, currentTool.getTool());
+        if(drawingEnable) {
+            currentPath = drawing.addStroke(event, currentTool.getTool());
 
-        //force view to draw
-        invalidate();
-
+            //force view to draw
+            invalidate();
+        }
         return true;
     }
 
@@ -72,7 +83,7 @@ public class DrawingController extends View {
         currentTool = currentTool.changeSize(width);
     }
 
-    public void sendDrawing() throws JSONException{
+    public void sendDrawing(DrawingActivity drawingActivity) throws JSONException{
         JSONObject jsonDrawing = drawing.toJson();
 
         String url = appController.getBaseUrl() + "drawing";
@@ -92,6 +103,73 @@ public class DrawingController extends View {
         });
 
         appController.addToRequestQueue(request);
+
+        final Match match = appController.getCurrentMatch();
+
+        List<String> states = match.getAllowedStates();
+
+        final String newState = states.indexOf(match.getState()) >= 3 ? states.get(0) : states.get(states.indexOf(match.getState()) + 1 );
+
+        Log.d("newstate", newState);
+
+        String matchUrl = appController.getBaseUrl() + "match/" + match.getId();
+
+        StringRequest stateRequest = new StringRequest(Request.Method.PUT,
+                matchUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("json_obj_req", response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("state", newState);
+                return params;
+            }};
+
+        appController.addToRequestQueue(stateRequest);
+
+        drawingActivity.goToMainMenu();
+
+    }
+
+    public void getDrawing(final String matchID){
+
+        String url = appController.getBaseUrl() + "drawing/" + matchID;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("json_obj_req", response.toString());
+                        try {
+                            drawing = Drawing.fromJsonString(response.toString());
+                            invalidate();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+            }
+        });
+
+
+        appController.addToRequestQueue(request);
+
+
 
     }
 
