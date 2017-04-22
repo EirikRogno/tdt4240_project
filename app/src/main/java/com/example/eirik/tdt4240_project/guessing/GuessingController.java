@@ -2,8 +2,6 @@ package com.example.eirik.tdt4240_project.guessing;
 
 //GET:/drawing/{matchID}
 
-import android.app.AlertDialog;
-
 import com.example.eirik.tdt4240_project.AppController;
 
 public class GuessingController {
