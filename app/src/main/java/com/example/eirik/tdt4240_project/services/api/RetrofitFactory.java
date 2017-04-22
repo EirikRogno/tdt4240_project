@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
 
-    public static Retrofit getRetrofitBuilder() {
+    public static Retrofit getRetrofitInstance() {
         return new Retrofit.Builder()
                 .baseUrl(AppController.getInstance().getBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())

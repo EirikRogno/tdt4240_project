@@ -4,6 +4,7 @@ import com.example.eirik.tdt4240_project.models.User;
 
 import org.json.JSONObject;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -13,6 +14,14 @@ import retrofit2.http.*;
 
 public interface UserApi {
 
-    @POST("users")
-    Call<User> createUser(@Body JSONObject user);
+    @GET("user/{username}")
+    Observable<User> loginUser(@Path("username") String username, @Query("token") String token);
+
+    @POST("user")
+    Observable<User> createUser(@Query("username") String username, @Query("token") String token);
+
+    @POST("user/registertoken")
+    Observable<String> updateDeviceToken(@Query("username") String username, @Query("token") String token);
 }
+
+

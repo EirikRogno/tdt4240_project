@@ -9,75 +9,105 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.eirik.tdt4240_project.AppController;
+import com.example.eirik.tdt4240_project.models.User;
+import com.example.eirik.tdt4240_project.services.api.RetrofitFactory;
+import com.example.eirik.tdt4240_project.services.api.UserApi;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+
 public class LogInController {
 
     AppController appController = AppController.getInstance();
 
     public void getUser(final String userID, final LogInActivity logInActivity){
-        String url = appController.getBaseUrl() + "user/" + userID;
+        // Instantiate the api
+        Retrofit retrofit = RetrofitFactory.getRetrofitInstance();
+        UserApi userApi = retrofit.create(UserApi.class);
 
+        // Get the device token used for push notifications
+        String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
-                url, null,
-                new Response.Listener<JSONObject>() {
+        // Execute the HTTP call
+        Observable<User> newUserResult = userApi.loginUser(userID, deviceToken);
+
+        // Subscribe to the result of the HTTP call
+        newUserResult.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("json_obj_req", response.toString());
-                        appController.setUsername(userID);
+                    public void onSubscribe(Disposable d) {/*Do nothing*/ }
+
+                    @Override
+                    public void onNext(User value) {
+                        // This launches when we recive a
+                        // response that can be deserialized to a user
+                        Log.d("json_obj_req", value.toString());
+                        appController.setUsername(value.getUsername());
                         logInActivity.goToMainMenu();
-
                     }
-                }, new Response.ErrorListener() {
+
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+                    public void onError(Throwable e) {
+                        Log.d("json_obj_req", "Error: " + e.getMessage());
                         logInActivity.displayMessage("Username does not exist!");
                     }
-                });
 
-        appController.addToRequestQueue(request);
+                    @Override
+                    public void onComplete() {/*Do nothing*/ }
+                });
 
     }
 
     public void createUser(final String userID, final LogInActivity logInActivity){
 
-        String url = appController.getBaseUrl() + "user/";
+        // Instantiate the api
+        Retrofit retrofit = RetrofitFactory.getRetrofitInstance();
+        UserApi userApi = retrofit.create(UserApi.class);
 
-        StringRequest request = new StringRequest(Request.Method.POST,
-                url,
-                new Response.Listener<String>() {
+        // Get the device token used for push notifications
+        String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+        // Execute the HTTP call
+        Observable<User> newUserResult = userApi.createUser(userID, deviceToken);
+
+        // Subscribe to the result of the HTTP call
+        newUserResult.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
                     @Override
-                    public void onResponse(String response) {
-                        Log.d("json_obj_req", response);
-                        if(response.equals("")){
+                    public void onSubscribe(Disposable d) {/*Do nothing*/ }
+
+                    @Override
+                    public void onNext(User value) {
+                        Log.d("json_obj_req", value.toString());
+                        if(value.getUsername().equals("")){
                             logInActivity.displayMessage("Username taken!");
                         }else {
                             appController.setUsername(userID);
                             logInActivity.goToMainMenu();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
-                logInActivity.displayMessage("Username taken!");
-            }
-        }) {
 
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username", userID);
-                return params;
-        }};
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("json_obj_req", "Error: " + e.getMessage());
+                        logInActivity.displayMessage("Username taken!");
+                    }
 
-        appController.addToRequestQueue(request);
+                    @Override
+                    public void onComplete() {/*Do nothing*/ }
+                });
 
     }
 
