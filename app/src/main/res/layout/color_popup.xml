@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Velg farge"
+        android:text="Pick a colour"
         android:id="@+id/text_dialog"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="4dp"
@@ -21,7 +21,7 @@
 
 
     <Button
-        android:text="Lukk"
+        android:text="Close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/close"

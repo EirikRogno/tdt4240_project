@@ -8,24 +8,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#91cbde"
     tools:context=".mainmenu.MainMenuActivity">
 
     <Button
         android:id="@+id/btnNewGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
+        android:background="#80ba6e"
+        android:onClick="newGame"
         android:text="New game"
-        android:onClick="newGame"/>
+        android:textColor="#fff"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/refresh"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/txtActiveGames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="17dp"
         android:text="Active games: "
+        android:textColor="#000"
         android:layout_below="@+id/btnNewGame"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -34,10 +41,12 @@
         android:id="@+id/matchList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/txtActiveGames"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
+        android:layout_below="@+id/txtActiveGames"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="50dp"
+        android:background="#fff" />
 
     <ImageButton
         android:id="@+id/refresh"
@@ -46,17 +55,21 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:background="#80ba6e"
+        android:onClick="refresh"
         app:srcCompat="@android:drawable/ic_popup_sync"
-        android:onClick="refresh"/>
+        android:layout_alignBottom="@+id/btnNewGame" />
 
     <Button
         android:id="@+id/logOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="#FF6666"
+        android:onClick="logOut"
         android:text="Log out"
-        android:onClick="logOut"/>
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
