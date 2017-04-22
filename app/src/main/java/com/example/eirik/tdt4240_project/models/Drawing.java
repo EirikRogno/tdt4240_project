@@ -2,6 +2,7 @@ package com.example.eirik.tdt4240_project.models;
 
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.example.eirik.tdt4240_project.AppController;
@@ -35,7 +36,6 @@ public class Drawing {
     public Drawing() {
         id = "";
         userId = AppController.getInstance().getUsername();
-        word = "";
         matchId = AppController.getInstance().getCurrentMatch().getId();
         timestamp = null;
 
@@ -88,6 +88,8 @@ public class Drawing {
         * Create JSON object with matchid, username, word and image.
         *
         * */
+
+        Log.d("Word", this.getWord());
 
         // Drawing meta
         JSONObject json = new JSONObject();
