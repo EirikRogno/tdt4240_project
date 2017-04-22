@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,28 +8,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#91cbde"
     tools:context="com.example.eirik.tdt4240_project.login.LogInActivity">
 
     <EditText
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:background="#ffffff"
+
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Username"
-        android:layout_alignParentTop="true"
+        android:inputType="textPersonName"
+        android:paddingBottom="5px"
+        android:paddingTop="10px"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:layout_alignEnd="@+id/btnNewAcc"
+        android:layout_alignLeft="@+id/btnNewAcc"
+        android:layout_alignRight="@+id/btnNewAcc"
+        android:layout_alignStart="@+id/btnNewAcc"
         android:layout_below="@+id/txtUsername"
-        android:layout_centerHorizontal="true"
+        android:layout_margin="9dp"
         android:layout_marginTop="33dp"
-        android:onClick="logIn"/>
+        android:background="#80ba6e"
+        android:onClick="logIn"
+        android:text="Log in"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/btnNewAcc"
@@ -36,23 +47,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogIn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="9dp"
+        android:background="#80ba6e"
+        android:includeFontPadding="false"
+        android:onClick="newAccount"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
         android:text="New account"
-        android:onClick="newAccount"/>
+        android:textColor="#ffffff" />
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="Drawly"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColorLink="@android:color/holo_orange_dark"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:textColor="@android:color/holo_orange_dark" />
+        app:srcCompat="@drawable/drawly"
+        android:layout_above="@+id/btnLogIn"
+        android:layout_alignLeft="@+id/txtUsername"
+        android:layout_alignStart="@+id/txtUsername"
+        android:layout_marginBottom="38dp"
+        android:layout_alignRight="@+id/txtUsername"
+        android:layout_alignEnd="@+id/txtUsername" />
 
 </RelativeLayout>
