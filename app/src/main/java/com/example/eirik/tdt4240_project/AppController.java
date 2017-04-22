@@ -17,10 +17,10 @@ public class AppController extends Application{
 
     private static AppController mInstance;
 
-    //private String baseUrl = "https://tdt4140-backend.herokuapp.com/";
+    private String baseUrl = "https://tdt4140-backend.herokuapp.com/";
     
     //For use with local testing
-    private String baseUrl = "http://10.0.2.2:8080/";
+    //private String baseUrl = "http://10.0.2.2:8080/";
 
     private String username;
 
