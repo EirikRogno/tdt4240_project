@@ -29,17 +29,16 @@
         android:id="@+id/btnLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btnNewAcc"
-        android:layout_alignLeft="@+id/btnNewAcc"
-        android:layout_alignRight="@+id/btnNewAcc"
-        android:layout_alignStart="@+id/btnNewAcc"
-        android:layout_below="@+id/txtUsername"
-        android:layout_margin="9dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="17dp"
         android:background="#80ba6e"
         android:onClick="logIn"
         android:text="Log in"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:layout_below="@+id/txtUsername"
+        android:layout_alignRight="@+id/btnNewAcc"
+        android:layout_alignEnd="@+id/btnNewAcc"
+        android:layout_alignLeft="@+id/btnNewAcc"
+        android:layout_alignStart="@+id/btnNewAcc" />
 
     <Button
         android:id="@+id/btnNewAcc"
