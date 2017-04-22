@@ -63,6 +63,10 @@ public class DrawingController extends View {
         canvas.drawPath(currentPath,currentTool.getTool());
     }
 
+    public Drawing getDrawing() {
+        return drawing;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(drawingEnable) {
@@ -141,7 +145,7 @@ public class DrawingController extends View {
 
     }
 
-    public void getDrawing(final String matchID){
+    public void getRemoteDrawing(final String matchID){
 
         String url = appController.getBaseUrl() + "drawing/" + matchID;
 
@@ -151,8 +155,11 @@ public class DrawingController extends View {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("json_obj_req", response.toString());
+
                         try {
                             drawing = Drawing.fromJsonString(response.toString());
+                            String word = response.getString("word");
+                            appController.setCurrentWord(word);
                             invalidate();
                         } catch (JSONException e) {
                             e.printStackTrace();

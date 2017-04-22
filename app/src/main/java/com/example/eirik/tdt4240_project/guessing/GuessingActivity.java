@@ -1,6 +1,7 @@
 package com.example.eirik.tdt4240_project.guessing;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
 import com.example.eirik.tdt4240_project.drawing.DrawingController;
+import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
 
 public class GuessingActivity extends AppCompatActivity {
 
@@ -27,25 +29,29 @@ public class GuessingActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.guessButton);
         drawingController =  (DrawingController)findViewById(R.id.drawing);
         drawingController.setDrawingEnable(false);
-        drawingController.getDrawing(AppController.getInstance().getCurrentMatch().getId());
-    }
-
-    public void goToNextState(){
-        // TODO: move the game to next state;
+        drawingController.getRemoteDrawing(AppController.getInstance().getCurrentMatch().getId());
     }
 
     public void makeGuess(View view){
         controller.correctGuess(guessInput.getText().toString(), this);
     }
 
-    public void displayMessage(String message){
+    public void goToMainMenu(){
+
+        startActivity(new Intent(GuessingActivity.this, MainMenuActivity.class));
+    }
+
+    public void displayMessage(final String title, String message, String buttonText){
         AlertDialog alertDialog = new AlertDialog.Builder(GuessingActivity.this).create();
-        alertDialog.setTitle("Wrong word");
+        alertDialog.setTitle(title);
         alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Try again!",
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, buttonText,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        if(title.equals("Correct!")){
+                            goToMainMenu();
+                        }
                     }
                 });
         alertDialog.show();

@@ -71,7 +71,10 @@ public class DrawingActivity extends Activity {
 
     private void startDrawingActivity() {
         // get a word from server
-        wordField.setText("Banan");
+
+        String word = "Banana";
+        drawingController.getDrawing().setWord(word);
+        wordField.setText(word);
     }
 
     public void goToMainMenu(){
