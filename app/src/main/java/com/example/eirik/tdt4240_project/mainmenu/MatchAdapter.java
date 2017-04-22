@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
 import com.example.eirik.tdt4240_project.models.Match;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MatchAdapter extends ArrayAdapter<Match>{
 
@@ -51,7 +53,38 @@ public class MatchAdapter extends ArrayAdapter<Match>{
 
         viewHolder.txtPlayerOne.setText(match.getplayerOne());
         viewHolder.txtPlayerTwo.setText(match.getplayerTwo());
-        viewHolder.txtState.setText(match.getState());
+
+        String stateText = "";
+        List<String> states = match.getAllowedStates();
+        String state = match.getState();
+
+        if(match.getplayerOne().equals(AppController.getInstance().getUsername())){
+            if(state.equals(states.get(0))){
+                stateText = "Your turn to draw!";
+            }else if(state.equals(states.get(1))){
+                stateText = "Opponents turn!";
+            }else if(state.equals(states.get(2))){
+                stateText = "Opponents turn!";
+            }else if(state.equals(states.get(3))){
+                stateText = "Your turn to guess!";
+            }else if(state.equals(states.get(4))){
+                stateText = "Accept invite?";
+            }
+        }else if(match.getplayerTwo().equals(AppController.getInstance().getUsername())){
+            if(state.equals(states.get(0))){
+                stateText = "Opponents turn!";
+            }else if(state.equals(states.get(1))){
+                stateText = "Your turn to guess!";
+            }else if(state.equals(states.get(2))){
+                stateText = "Your turn to draw!";
+            }else if(state.equals(states.get(3))){
+                stateText = "Opponents turn!";
+            }else if(state.equals(states.get(4))){
+                stateText = "Waiting for answer";
+            }
+        }
+
+        viewHolder.txtState.setText(stateText);
 
         return convertView;
     }
