@@ -17,6 +17,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.login.LogInActivity;
 import com.example.eirik.tdt4240_project.models.Match;
+import com.example.eirik.tdt4240_project.models.User;
+import com.example.eirik.tdt4240_project.services.api.RetrofitFactory;
+import com.example.eirik.tdt4240_project.services.api.UserApi;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +29,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class MainMenuController {
 
@@ -150,10 +161,46 @@ public class MainMenuController {
     }
 
     public void logout(final MainMenuActivity mainMenuActivity) {
+        // Clear device id on the server so the device doesn't recieve notifications
+        // for the user that logged out
+        // Instantiate the api
+        Retrofit retrofit = RetrofitFactory.getRetrofitInstance();
+        UserApi userApi = retrofit.create(UserApi.class);
+
+        // Execute the HTTP call
+        Observable<String> updateResponse = userApi.updateDeviceToken(AppController.getInstance().getUsername(), "");
+
+        // Subscribe to the result of the HTTP call
+        updateResponse.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {/*Do nothing*/ }
+
+                    @Override
+                    public void onNext(String value) {
+                        Log.d("json_obj_req", "Success: " + value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("json_obj_req", "Error: " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {/*Do nothing*/ }
+                });
+
+        // Set the username null, "logging out" the user.
         AppController.getInstance().setUsername(null);
 
+        // Create the new intent for going to login page
         Intent loginIntent = new Intent(mainMenuActivity, LogInActivity.class);
+
+        // Make sure the user cant use the back button to get back to the main menu without loggin in
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        // Go to the loginpage
         mainMenuActivity.startActivity(loginIntent);
 
     }
