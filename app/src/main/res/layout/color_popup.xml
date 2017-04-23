@@ -30,8 +30,7 @@
         android:layout_centerHorizontal="true"
         android:background="@color/button"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        android:text="Lukk" />
+        android:textSize="14sp"/>
 
     <Button
         android:layout_width="20dp"
