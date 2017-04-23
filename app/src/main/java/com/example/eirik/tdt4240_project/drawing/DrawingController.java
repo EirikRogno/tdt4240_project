@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -40,6 +42,8 @@ public class DrawingController extends View {
     private Drawing drawing;
     private Map<SerializablePath, Paint> strokes;
     private DrawingTool currentTool;
+    private DrawingTool eraser;
+    private DrawingTool lastBrush; // remembers last brush before changing to eraser
     private boolean drawingEnable;
 
     AppController appController = AppController.getInstance();
@@ -49,6 +53,7 @@ public class DrawingController extends View {
         drawing = new Drawing();
         currentPath = new Path();
         currentTool = new Pen(Color.BLACK, 5);
+        eraser = new Eraser();
         drawingEnable = true;
     }
 
@@ -85,12 +90,14 @@ public class DrawingController extends View {
     }
 
     public void changeColor(int color, TextView currentColorView) { // makes new tool
-        currentColorView.setBackgroundColor(color); // in GUI
+        //currentColorView.setBackgroundColor(color); // in GUI
+        GradientDrawable background = (GradientDrawable) currentColorView.getBackground();
+        background.setColor(color);
         currentTool = currentTool.changeColor(color);
     }
 
-    public void changeStrokeWidth(int width) {
-        currentTool = currentTool.changeSize(width);
+    public void changeBrushSize(int size) {
+        currentTool = currentTool.changeSize(size);
     }
 
     public void sendDrawing(DrawingActivity drawingActivity) throws JSONException{
@@ -190,6 +197,15 @@ public class DrawingController extends View {
         strokes = drawing.undoLastStroke();
 
         invalidate();
+    }
+
+    public void activateErasor() {
+        lastBrush = currentTool;
+        currentTool = eraser;
+    }
+
+    public void activatePencil() {
+        currentTool = lastBrush;
     }
 
     public void getRemoteWord(final DrawingActivity drawingActivity) {
