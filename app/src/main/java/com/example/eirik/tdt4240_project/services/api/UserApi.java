@@ -13,8 +13,11 @@ import retrofit2.http.*;
  */
 
 public interface UserApi {
-
+    
     @GET("user/{username}")
+    Observable<User> getUser(@Path("username") String username);
+
+    @GET("user/{username}/login")
     Observable<User> loginUser(@Path("username") String username, @Query("token") String token);
 
     @POST("user")
