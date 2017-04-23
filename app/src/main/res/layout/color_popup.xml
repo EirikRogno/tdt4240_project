@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffffff"
+    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <TextView
@@ -13,20 +14,24 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:textSize="18sp"
-        android:textColor="#ff000000"
+        android:textColor="#333333"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal" />
 
 
     <Button
-        android:text="Close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/close"
+        android:text="Close"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
         android:layout_below="@+id/text_dialog"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"/>
 
     <Button
         android:layout_width="20dp"
