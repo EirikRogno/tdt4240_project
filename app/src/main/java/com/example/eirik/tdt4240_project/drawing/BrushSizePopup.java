@@ -38,16 +38,6 @@ public class BrushSizePopup {
 
         // BRUSH SIZE BUTTONS
 
-        /**
-        Button redButton = (Button) dialog.findViewById(R.id.redButton);
-        redButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                changeColor(Color.parseColor("#FFFF4444"));
-                dialog.dismiss();
-            }
-        });
-         **/
-
         // Extra small brush
         ImageButton xSmall = (ImageButton) dialog.findViewById(R.id.xsmall);
         xSmall.setOnClickListener(new View.OnClickListener() {

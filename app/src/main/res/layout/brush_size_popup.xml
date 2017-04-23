@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="50sp"
-        android:text="Velg penselstørrelse"
+        android:text="Choose brush size"
         android:id="@+id/text_dialog"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="4dp"
@@ -32,7 +32,7 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_marginTop="30dp"
-        android:text="Lukk" />
+        android:text="Close" />
 
     <!-- Extra small brush -->
     <android.support.v7.widget.AppCompatImageButton
