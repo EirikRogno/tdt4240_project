@@ -19,30 +19,35 @@ public class NewGameController {
 
 
     public void createNewGame(final String userID, final NewGameActivity newGameActivity) {
-        String url = appController.getBaseUrl() + "user/" + userID;
+        if(userID.equals(appController.getUsername())){
+            newGameActivity.displayMessage("Cannot invite yourself!");
+        }else {
+
+            String url = appController.getBaseUrl() + "user/" + userID;
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
-                url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("json_obj_req", response.toString());
-                        if(response.equals("")){
-                            newGameActivity.displayMessage("User does not exist!");
-                        }else {
-                            postNewGame(userID, appController.getUsername(), newGameActivity);
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                    url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("json_obj_req", response.toString());
+                            if (response.equals("")) {
+                                newGameActivity.displayMessage("User does not exist!");
+                            } else {
+                                postNewGame(userID, appController.getUsername(), newGameActivity);
+                            }
+
                         }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
-                newGameActivity.displayMessage("User does not exist!");
-            }
-        });
-        appController.addToRequestQueue(request);
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d("json_obj_req", "Error: " + error.getMessage());
+                    newGameActivity.displayMessage("User does not exist!");
+                }
+            });
+            appController.addToRequestQueue(request);
+        }
 
     }
 

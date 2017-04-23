@@ -1,6 +1,7 @@
 package com.example.eirik.tdt4240_project.mainmenu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.eirik.tdt4240_project.AppController;
+import com.example.eirik.tdt4240_project.login.LogInActivity;
 import com.example.eirik.tdt4240_project.models.Match;
 
 import org.json.JSONArray;
@@ -73,8 +75,6 @@ public class MainMenuController {
             }
         });
 
-        Log.d("matches", matchList.toString());
-
         appController.addToRequestQueue(request);
 
     }
@@ -98,7 +98,7 @@ public class MainMenuController {
         }
     }
 
-    public void acceptInvitation(boolean accept, Match match, final MainMenuActivity mainMenuActivity){
+    public void acceptInvitation(boolean accept, final Match match, final MainMenuActivity mainMenuActivity){
 
         String url = appController.getBaseUrl() + "match/" + match.getId();
 
@@ -122,7 +122,7 @@ public class MainMenuController {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("state", "player_one_drawing");
+                    params.put("state", match.getAllowedStates().get(0));
                     return params;
                 }};
 
@@ -149,5 +149,13 @@ public class MainMenuController {
         }
     }
 
+    public void logout(final MainMenuActivity mainMenuActivity) {
+        AppController.getInstance().setUsername(null);
+
+        Intent loginIntent = new Intent(mainMenuActivity, LogInActivity.class);
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        mainMenuActivity.startActivity(loginIntent);
+
+    }
 
 }

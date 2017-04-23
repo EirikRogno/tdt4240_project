@@ -12,6 +12,7 @@ import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
 import com.example.eirik.tdt4240_project.drawing.DrawingActivity;
 import com.example.eirik.tdt4240_project.guessing.GuessingActivity;
+import com.example.eirik.tdt4240_project.login.LogInActivity;
 import com.example.eirik.tdt4240_project.models.Match;
 import com.example.eirik.tdt4240_project.newGame.NewGameActivity;
 
@@ -28,6 +29,14 @@ public class MainMenuActivity extends AppCompatActivity {
 
         AppController.getInstance().setCurrentMatch(null);
 
+    }
+
+    public void refresh(View v){
+        updateMatchList();
+    }
+
+    public void logOut(View v){
+        controller.logout(this);
     }
 
     public void updateMatchList(){

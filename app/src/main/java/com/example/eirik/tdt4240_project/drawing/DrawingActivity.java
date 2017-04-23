@@ -2,6 +2,7 @@ package com.example.eirik.tdt4240_project.drawing;
 
 import android.app.Activity;
 import android.app.ExpandableListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.eirik.tdt4240_project.AppController;
 import com.example.eirik.tdt4240_project.R;
+import com.example.eirik.tdt4240_project.mainmenu.MainMenuActivity;
 
 public class DrawingActivity extends Activity {
 
@@ -76,7 +79,7 @@ public class DrawingActivity extends Activity {
             }
         });
 
-        startDrawingActivity();
+        drawingController.getRemoteWord(this);
     }
 
     private void openColorPopup() {
@@ -119,16 +122,21 @@ public class DrawingActivity extends Activity {
         drawingController.activatePencil();
     }
 
-    private void startDrawingActivity() {
+    public void startDrawingActivity(String word) {
         // get a word from server
-        wordField.setText("Banan");
+        drawingController.getDrawing().setWord(word);
+        wordField.setText(word);
+    }
+
+    public void goToMainMenu(){
+        startActivity(new Intent(DrawingActivity.this, MainMenuActivity.class));
     }
 
     private void stopDrawingActivity() {
         // send drawing to server
         Log.d("drawing", "About to send the drawing to the server, please wait for lift-off");
         try {
-            drawingController.sendDrawing();
+            drawingController.sendDrawing(this);
         } catch (Exception e) {
             // Display error to user
         }
